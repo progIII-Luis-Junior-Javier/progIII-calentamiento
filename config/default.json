@@ -1,0 +1,12 @@
+
+
+{
+    "db-connections":{
+        "mongodb":{
+            "host": "clusterdealership.zm7sp.mongodb.net",
+            "user":"pruebas_json",
+            "pasword":"9289",
+            "dbname":"pruebas_json"
+        }
+    }
+}
