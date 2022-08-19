@@ -1,7 +1,7 @@
 //packages
 const mongoose = require("mongoose");
 //creación de schema
-const periodSchema = new mongoose.Schema({
+const cardSchema = new mongoose.Schema({
     cardNumber:{
         type: "String",
         required: true
@@ -40,9 +40,12 @@ const periodSchema = new mongoose.Schema({
     },
     rarity:{
         type: "String"
+    },
+    cardName:{
+        type: "String",
+        require: true
     }
 
-
-
-
 });
+
+module.exports = cardSchema
