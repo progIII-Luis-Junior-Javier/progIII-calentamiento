@@ -1,0 +1,25 @@
+{
+  "name": "academic-api",
+  "version": "1.0.0",
+  "description": "Pruebas de node js",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/progIII-Luis-Junior-Javier/progIII-calentamiento.git"
+  },
+  "keywords": [
+    "pruebas",
+    "academic",
+    "rest",
+    "api"
+  ],
+  "author": "Javier R. López",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/progIII-Luis-Junior-Javier/progIII-calentamiento/issues"
+  },
+  "homepage": "https://github.com/progIII-Luis-Junior-Javier/progIII-calentamiento#readme"
+}
