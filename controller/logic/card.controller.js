@@ -4,10 +4,16 @@ const cardDto = require("../../model/dto/card.dto")
 
 exports.createCard = (req, res, next) => {
     let card = {
-        name: req.body.name,
+        cardNumber: req.body.cardNumber,
+        typeCard: req.body.typeCard,
+        playCost: req.body.playCost,
+        colorCard: req.body.colorCard,
+        levelCard: req.body.levelCard,
         power: req.body.power,
-        type: req.body.type,
-        effects: req.body.name
+        attribute: req.body.attribute,
+        stageLevel: req.body.stageLevel,
+        rarity: req.body.rarity,
+        cardName: req.body.cardName
     }
 
     cardDto.save(card, (err, data) => {
