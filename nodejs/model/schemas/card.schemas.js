@@ -46,6 +46,7 @@ const cardSchema = new mongoose.Schema({
         require: true
     }
 
+
 });
 
 module.exports = cardSchema
