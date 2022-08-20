@@ -1,10 +1,12 @@
 //packages
 
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
+const db = require("../db-connection/mongodb");
+
  
 /** using schema */
 const schema = require("../schemas/card.schemas")
-
+db();
 schema.statics = {
     create: function(data, cb){
         let doc = new this(data);

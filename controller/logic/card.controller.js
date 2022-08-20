@@ -14,7 +14,7 @@ exports.createCard = (req, res, next) => {
         stageLevel: req.body.stageLevel,
         rarity: req.body.rarity,
         cardName: req.body.cardName
-    }
+    };
 
     cardDto.create(card, (err, data) => {
         if(err){
@@ -23,7 +23,7 @@ exports.createCard = (req, res, next) => {
                     error: err
                 }
             );
-        }
+        };
         res.status(201).json({
             info: data
         });
@@ -40,12 +40,12 @@ exports.getAll = (req, res, next) => {
                 error: err
             }
         );
-    }
+    };
     res.status(200).json(
         {
         info: data
         });
-})
+});
 };
 
 exports.getByFilter = (req, res, next) => {
@@ -57,11 +57,11 @@ exports.getByFilter = (req, res, next) => {
                 error: err
             }
         );
-    }
+    };
     res.status(200).json(
         {
         info: data
         });
-})
+});
 };
 
