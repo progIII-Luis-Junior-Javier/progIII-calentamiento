@@ -8,5 +8,6 @@
             "pasword":"9289",
             "dbname":"pruebas_json"
         }
-    }
+    },
+    "server-port": 3000
 }

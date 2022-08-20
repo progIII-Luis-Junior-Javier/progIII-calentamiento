@@ -1,6 +1,6 @@
 /** Dto */
 
-const cardDto = require("../../model/dto/card.dto")
+const cardDto = require("../../nodejs/model/dto/card.dto");
 
 exports.createCard = (req, res, next) => {
     let card = {
@@ -16,16 +16,52 @@ exports.createCard = (req, res, next) => {
         cardName: req.body.cardName
     }
 
-    cardDto.save(card, (err, data) => {
+    cardDto.create(card, (err, data) => {
         if(err){
             return res.status(400).json(  
                 {
                     error: err
                 }
-            )
+            );
         }
         res.status(201).json({
             info: data
-        })
-    })
-}
+        });
+    });
+
+};
+
+exports.getAll = (req, res, next) => {
+    
+    cardDto.getAll({}, err, data => {
+    if(err){
+        return res.status(400).json(  
+            {
+                error: err
+            }
+        );
+    }
+    res.status(200).json(
+        {
+        info: data
+        });
+})
+};
+
+exports.getByFilter = (req, res, next) => {
+    
+    cardDto.getByFilter({code: req.params.code}, err, data => {
+    if(err){
+        return res.status(400).json(  
+            {
+                error: err
+            }
+        );
+    }
+    res.status(200).json(
+        {
+        info: data
+        });
+})
+};
+
