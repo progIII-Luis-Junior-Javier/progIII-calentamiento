@@ -1,10 +1,12 @@
 //packages
 const mongoose = require("mongoose");
+const validator = require("mongoose-unique-validator");
 //creación de schema
 const cardSchema = new mongoose.Schema({
     cardNumber:{
         type: "String",
-        required: true
+        required: true,
+        unique: true
     },
     typeCard:{
         type: "String",
@@ -48,5 +50,6 @@ const cardSchema = new mongoose.Schema({
 
 
 });
-
-module.exports = cardSchema
+//exportación del schema
+cardSchema.plugin(validator);
+module.exports = cardSchema;
