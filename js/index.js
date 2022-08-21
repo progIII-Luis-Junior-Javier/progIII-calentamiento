@@ -14,24 +14,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     sections.forEach(section => section.addEventListener('click', manageOptions))
 
-   // const clearMain = document.querySelector('#clear-main')
-
-   /**
-    * clearMain.addEventListener('click', e =>
-        document.querySelector('.main').innerHTML = ''
-    ) */ 
-
-    //--------------------
-    /*const container = 'main'
-    const element = document.querySelector(container)
-    const url = './resources/html/inicio.html'
-
-    const response = await fetch(url)
-    console.log(response)
-    const html = await response.text()
-
-    element.innerHTML = html
-*/
     options.forEach(pag => pag.addEventListener('click', loadPage))
 })
 
@@ -39,7 +21,7 @@ document.addEventListener('DOMContentLoaded', async () => {
  * Carga una página en en la SPA según el valor de event.target
  * @param {Event} event 
  */
- async function loadPage(event){
+async function loadPage(event) {
     document.querySelector('.main-nav').classList.remove('active')
     event.preventDefault()
     const option = event.target.text
@@ -48,12 +30,15 @@ document.addEventListener('DOMContentLoaded', async () => {
     let url = ''
     let response = ''
     let html = ''
-    switch(option){
+    switch (option) {
         case 'Registro':
             url = './html/register.html'
             response = await fetch(url)
             html = await response.text()
             container.innerHTML = html
+
+            document.querySelector('#boton-enviar').addEventListener('click', enviarDatos)
+
             break;
         case 'Listado':
             url = './html/list.html'
@@ -66,7 +51,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 console.log(
                     `No hay definido un caso para la opción '${option}'`
                 );
-            }else{
+            } else {
                 url = './html/register.html'
                 response = await fetch(url)
                 html = await response.text()
@@ -81,4 +66,91 @@ document.addEventListener('DOMContentLoaded', async () => {
 function manageOptions(event) {
     //event.preventDefault()
     console.log(`Ha pulsado sobre la opción ${event.target.innerText}`)
+}
+
+
+let carta
+let cartaBuscada
+
+function enviarDatos() {
+    const nombre = document.querySelector('#cardName').value
+    const numero = document.querySelector('#cardNumber').value
+    const tipoCarta = document.querySelector('#typeCard').value
+    const costoJuego = document.querySelector('#playCost').value
+    const color = document.querySelector('#colorCard').value
+    const nivel = document.querySelector('#levelCard').value
+    const poder = document.querySelector('#power').value
+    const atributo = document.querySelector('#attribute').value
+    const stageLevel = document.querySelector('#stageLevel').value
+    const rareza = document.querySelector('#rarity').value
+    carta = {
+        cardName: nombre,
+        cardNumber: numero,
+        typeCard: tipoCarta,
+        playCost: costoJuego,
+        colorCard: color,
+        levelCard: nivel,
+        power: poder,
+        attribute: atributo,
+        stagelevel: stageLevel,
+        rarity: rareza
+    }
+
+    enviar(carta)
+}
+
+function buscarCarta(numero, lista) {
+    const cartaIndex = lista.findIndex((carta) => numero === carta.cardNumber)
+
+    if (cartaIndex => 0) {
+        return lista[jugadorIndex]
+    }
+
+    return null
+}
+
+/**
+ * 
+ * fetch('http://localhost:8080/card')
+    .then(function (res) {
+        if (res.ok) {
+            res.json()
+                .then(function ({info}) {
+                    console.log(info);
+                })
+        }
+    })} carta 
+ */
+
+
+function enviar(carta) {
+    fetch(`http://localhost:8080/card`, {
+        method: 'post',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            carta
+        })
+    }).then(function (res) {
+            if (res.ok) {
+                res.json()
+                    .then(function ({ data }) {
+                        console.log(data)
+            })
+            }               
+    })
+}
+
+
+
+fetchData = async url => {
+    const response = await fetch(url)
+    if (!response.ok) {
+        throw new Error(
+            `${response.status} - ${response.statusText}, 
+             al intentar acceder al recurso '${response.url}'`
+        )
+    }
+    return await response.json()
 }
