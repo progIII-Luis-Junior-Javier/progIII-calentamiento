@@ -3,11 +3,15 @@
 {
     "db-connections":{
         "mongodb":{
-            "host": "clusterdealership.zm7sp.mongodb.net",
-            "user":"pruebas_json",
-            "pasword":"9289",
-            "dbname":"pruebas_json"
+            "host": "clusterdealership.f2qy7.mongodb.net",
+            "user":"calentamiento_api_user",
+            "pasword":"Y0WgIp4fwvnKT5Ud",
+            "dbname":"db-cards-calentamiento"
         }
     },
-    "server-port": 3000
+    "server-port": 8080,
+    "secretkeys":{
+        "crytojs":"#XwwCzcSb@6"
+    }
+
 }
