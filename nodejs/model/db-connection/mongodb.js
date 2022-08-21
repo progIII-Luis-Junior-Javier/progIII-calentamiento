@@ -24,7 +24,7 @@ const config = require("config");
 const mongodbInfo = config.get("db-connections.mongodb");
 
 const connectStr = `mongodb+srv://${mongodbInfo.user}:${mongodbInfo.pasword}@${mongodbInfo.host}/${mongodbInfo.dbname}?retryWrites=true&w=majority`;
-
+console.log(connectStr);
 module.exports = () => {
     mongoose.connect(connectStr);
   
