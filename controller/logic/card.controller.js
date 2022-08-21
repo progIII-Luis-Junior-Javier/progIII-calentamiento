@@ -33,6 +33,7 @@ exports.createCard = (req, res, next) => {
 };
 
 exports.getAll = (req, res, next) => {
+    
     cardDto.getAll({}, (err, data) => {
     if(err){
         return res.status(400).json(  
