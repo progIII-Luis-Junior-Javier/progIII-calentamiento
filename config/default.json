@@ -9,7 +9,7 @@
             "dbname":"db-cards-calentamiento"
         }
     },
-    "server-port": 3000,
+    "server-port": 8080,
     "secretkeys":{
         "crytojs":"#XwwCzcSb@6"
     }
