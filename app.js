@@ -9,6 +9,9 @@ const port = config.get("server-port");
 const jsonparser =bodyParser.json()
 const urlEcodedParser = bodyParser.urlencoded({extended: true});
 const controller = require("./controller/logic/card.controller");
+const ipFn = require("./middleware/grtIpaddress")
+
+app.use("*",ipFn)
 
 app.use(jsonparser);
 app.use(urlEcodedParser)
@@ -21,6 +24,17 @@ app.get("/", (req, res, next) =>{
 app.get("/card", (req, res, next) =>{
     controller.getAll(req, res, next);
 });
+
+app.get("/card/bycardNumber/:cardNumber", (req, res, next) =>{
+    console.log("Obteniendo carta por numero...")
+    controller.getByFiltercardNumber(req, res, next);
+});
+
+app.get("/card/bytypeCard/:typeCard", (req, res, next) =>{
+    console.log("Obteniendo cartas por typo...")
+    controller.getByFilterTypecard(req, res, next);
+});
+
 
 
 app.post("/card", (req, res, next) =>{
