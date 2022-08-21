@@ -27,7 +27,7 @@ const connectStr = `mongodb+srv://${mongodbInfo.user}:${mongodbInfo.pasword}@${m
 
 module.exports = () => {
     mongoose.connect(connectStr);
-
+  
     mongoose.connection.on("connected", () => {
         console.log("mongodb serverd connected");
     });
