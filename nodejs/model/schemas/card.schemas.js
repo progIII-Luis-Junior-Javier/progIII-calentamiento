@@ -24,7 +24,6 @@ const cardSchema = new mongoose.Schema({
     },
     levelCard: {
         type: "Number",
-        required: true,
         min: 2,
         max: 7
     },
@@ -35,7 +34,7 @@ const cardSchema = new mongoose.Schema({
     },
     attribute:{
         type: "String",
-        required: true
+        
     },
     stageLevel:{
         type: "String",
