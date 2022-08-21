@@ -49,9 +49,24 @@ exports.getAll = (req, res, next) => {
 });
 };
 
-exports.getByFilter = (req, res, next) => {
-    
-    cardDto.getByFilter({code: req.params.code}, (err, data) => {
+exports.getByFiltercardNumber = (req, res, next) => {
+    cardDto.getByFiltercardNumber({cardNumber: req.params.cardNumber}, (err, data) => {
+    if(err){
+        return res.status(400).json(  
+            {
+                error: err
+            }
+        );
+    };
+    res.status(200).json(
+        {
+        info: data
+        });
+});
+};
+
+exports.getByFilterTypecard = (req, res, next) => {
+    cardDto.getByFilterTypecard({typeCard: req.params.typeCard}, (err, data) => {
     if(err){
         return res.status(400).json(  
             {

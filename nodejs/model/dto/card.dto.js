@@ -17,7 +17,10 @@ schema.statics = {
        this.find(query, cb); 
     },
 
-    getByFilter: function(query, cb){
+    getByFiltercardNumber: function(query, cb){
+        this.findOne(query, cb); 
+     },
+     getByFilterTypecard: function(query, cb){
         this.find(query, cb); 
      },
     update: function(query,data,cb){
