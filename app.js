@@ -44,12 +44,12 @@ app.get("/card/bytypeCard/:typeCard", (req, res, next) =>{
 
 app.post("/card", (req, res, next) =>{
     res.setHeader('Access-Control-Allow-Origin', '*')
-    console.log('req------------------------------------------------------------------------------')
-    console.log(req)
-    console.log('res------------------------------------------------------------------------------')
-    console.log(res)
-
+    //console.log('req------------------------------------------------------------------------------')
+    //console.log(req)
+    //console.log('res------------------------------------------------------------------------------')
+    //console.log(res)
     controller.createCard(req, res, next);
+    console.log ("si llegué a app post")
 });
 
 app.listen(port, () =>{
