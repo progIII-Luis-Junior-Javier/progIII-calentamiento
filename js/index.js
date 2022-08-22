@@ -48,6 +48,7 @@ async function loadPage(event) {
             container.innerHTML = html
 
             document.querySelector("#buscar").addEventListener('click', enviarBusquedaNumber)
+            document.querySelector("#buscarTipo").addEventListener('click', enviarBusquedaTipo)
             const options = document.querySelectorAll('.navlist a')
             options.forEach(option1 => option.addEventListener('click', () => {
                 console.log(option1)
@@ -143,8 +144,26 @@ function enviarBusquedaNumber() {
 
 }
 
+function enviarBusquedaTipo() {
+    const tipoCarta = document.querySelector('#buscadorTipo').value
+    buscarTipo(tipoCarta)
+
+}
+
+
 function buscarNumber(numeroCarta) {
     const url = `http://localhost:3000/card/bycardNumber/${numeroCarta}`
+    fetch(url).then(function (res) {
+        if (res.ok) {
+            res.json().then(function ({ info }) {
+                console.log(info)
+            })
+        }
+    })
+}
+
+function buscarTipo(tipoCarta) {
+    const url = `http://localhost:3000/card/bytypeCard/${tipoCarta}`
     fetch(url).then(function (res) {
         if (res.ok) {
             res.json().then(function ({ info }) {
