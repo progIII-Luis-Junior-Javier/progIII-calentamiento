@@ -1,4 +1,5 @@
-document.addEventListener('DOMContentLoaded', async () => {
+
+function iniciar(){
     const mainNav = document.querySelector('.main-nav')
     const navBarToggle = document.querySelector('#navbar-toggle')
 
@@ -15,7 +16,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     sections.forEach(section => section.addEventListener('click', manageOptions))
 
     options.forEach(pag => pag.addEventListener('click', loadPage))
-})
+}
 
 /**
  * Carga una página en en la SPA según el valor de event.target
@@ -92,46 +93,20 @@ function enviarDatos() {
         levelCard: nivel,
         power: poder,
         attribute: atributo,
-        stagelevel: stageLevel,
+        stageLevel: stageLevel,
         rarity: rareza
     }
 
     enviar(carta)
 }
 
-function buscarCarta(numero, lista) {
-    const cartaIndex = lista.findIndex((carta) => numero === carta.cardNumber)
-
-    if (cartaIndex => 0) {
-        return lista[jugadorIndex]
-    }
-
-    return null
-}
-
-/**
- * 
- * fetch('http://localhost:8080/card')
-    .then(function (res) {
-        if (res.ok) {
-            res.json()
-                .then(function ({info}) {
-                    console.log(info);
-                })
-        }
-    })} carta 
- */
-
-
 function enviar(carta) {
-    fetch(`http://localhost:8080/card`, {
+    fetch(`http://localhost:3000/card`, {
         method: 'post',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({
-            carta
-        })
+        body: JSON.stringify(carta)
     }).then(function (res) {
             if (res.ok) {
                 res.json()
@@ -142,15 +117,4 @@ function enviar(carta) {
     })
 }
 
-
-
-fetchData = async url => {
-    const response = await fetch(url)
-    if (!response.ok) {
-        throw new Error(
-            `${response.status} - ${response.statusText}, 
-             al intentar acceder al recurso '${response.url}'`
-        )
-    }
-    return await response.json()
-}
+window.addEventListener('load', iniciar)

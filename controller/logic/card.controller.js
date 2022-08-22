@@ -4,6 +4,7 @@ const cardDto = require("../../nodejs/model/dto/card.dto");
 
 
 exports.createCard = (req, res, next) => {
+    
     let card = {
         cardNumber: req.body.cardNumber,
         typeCard: req.body.typeCard,
@@ -17,8 +18,11 @@ exports.createCard = (req, res, next) => {
         cardName: req.body.cardName
     };
 
+    console.log(card)
+
     cardDto.create(card, (err, data) => {
         if(err){
+            console.log(err)
             return res.status(400).json(  
                 {
                     error: err
