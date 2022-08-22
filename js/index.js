@@ -38,14 +38,17 @@ async function loadPage(event) {
             html = await response.text()
             container.innerHTML = html
 
-            document.querySelector('#boton-enviar').addEventListener('click', enviarDatos2)
-
+            document.querySelector('#boton-enviar').addEventListener('click', enviarDatos)
+            console.log(numero)
             break;
         case 'Listado':
             url = './html/list.html'
             response = await fetch(url)
             html = await response.text()
             container.innerHTML = html
+
+            document.querySelector("#boton-buscarNumber").addEventListener('click', enviarBusquedaNumber)
+
             break;
         default:
             if (option !== 'Inicio') {
@@ -70,36 +73,12 @@ function manageOptions(event) {
 }
 
 
-/*
-*
+
 let carta
-let cartaBuscada
+
 
 function enviarDatos() {
-<<<<<<< HEAD
-   const nombre = document.querySelector('#cardName').value
-   const numero = document.querySelector('#cardNumber').value
-   const tipoCarta = document.querySelector('#typeCard').value
-   const costoJuego = document.querySelector('#playCost').value
-   const color = document.querySelector('#colorCard').value
-   const nivel = document.querySelector('#levelCard').value
-   const poder = document.querySelector('#power').value
-   const atributo = document.querySelector('#attribute').value
-   const stageLevel = document.querySelector('#stageLevel').value
-   const rareza = document.querySelector('#rarity').value
-   carta = {
-       cardName: nombre,
-       cardNumber: numero,
-       typeCard: tipoCarta,
-       playCost: costoJuego,
-       colorCard: color,
-       levelCard: nivel,
-       power: poder,
-       attribute: atributo,
-       stagelevel: stageLevel,
-       rarity: rareza
-   }
-=======
+
     const nombre = document.querySelector('#cardName').value
     const numero = document.querySelector('#cardNumber').value
     const tipoCarta = document.querySelector('#typeCard').value
@@ -122,35 +101,11 @@ function enviarDatos() {
         stageLevel: stageLevel,
         rarity: rareza
     }
->>>>>>> 86710733a027585ce994f893aede3036234704cd
+
 
    enviar(carta)
    
 }
-
-<<<<<<< HEAD
-function buscarCarta(numero, lista) {
-   const cartaIndex = lista.findIndex((carta) => numero === carta.cardNumber)
-
-   if (cartaIndex => 0) {
-       return lista[jugadorIndex]
-   }
-
-   return null
-}
-
-
-/* 
-* fetch('http://localhost:8080/card')
-   .then(function (res) {
-       if (res.ok) {
-           res.json()
-               .then(function ({info}) {
-                   console.log(info);
-               })
-       }
-   })} carta 
-*/
 
 
 
@@ -176,87 +131,26 @@ function enviar(carta) {
 
 //------------------------JAVIER
 
-function enviar2(carta) {
-    console.log(carta)
-    fetch(`http://localhost:3000/card`).then({
-        method: 'post',
+function enviarBusquedaNumber(){
+    const numero = document.querySelector('#cardNumber').value    
+    buscarNumber(numero)
+    
+}
+
+function buscarNumber(numeroCarta){
+    const url= `http://localhost:3000/card/bycardNumber/:${numeroCarta}`
+    fetch(url, {
+        method:"get",
         headers: {
             'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            carta
-        })
-    })
-        .then(function (res) {
-            if (res.ok) {
-                res.json()
-                    .then(function ({ carta }) {
-                        console.log(carta)
-                    })
-            }
-        })
-}
-
-
-
-
-// Ejemplo implementando el metodo POST:
-async function enviar4(url = 'http://localhost:3000/card', data = enviarDatos2()) {
-    console.log(enviarDatos2)
-    const response = await fetch(url, {
-      method: 'post', 
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    });
-    console.log("POR FIN")
-  }
-  
- 
-
-
-
-function enviarDatos2() {
-    var registro = document.getElementById('registro');
-    registro.onsubmit = function (e) {
-        e.preventDefault();
-        var carta = {};
-        const nombre = document.querySelector('#cardName').value
-        const numero = document.querySelector('#cardNumber').value
-        const tipoCarta = document.querySelector('#typeCard').value
-        const costoJuego = document.querySelector('#playCost').value
-        const color = document.querySelector('#colorCard').value
-        const nivel = document.querySelector('#levelCard').value
-        const poder = document.querySelector('#power').value
-        const atributo = document.querySelector('#attribute').value
-        const stageLevel = document.querySelector('#stageLevel').value
-        const rareza = document.querySelector('#rarity').value
-        carta = {
-            cardName: nombre,
-            cardNumber: numero,
-            typeCard: tipoCarta,
-            playCost: costoJuego,
-            colorCard: color,
-            levelCard: nivel,
-            power: poder,
-            attribute: atributo,
-            stagelevel: stageLevel,
-            rarity: rareza
+        },url: JSON.stringify(numeroCarta)
+    }).then(function (res) {
+        if (res.ok){
+            res.json().then(function ({ data }) {
+                console.log(data)
+            })
         }
-        enviar4(carta)
-        console.log(carta)
-        return carta
-        
-        
-
-    }
-    
-    console.log("Si envie datos");
-    
+    })
 }
-    
-    
 
 window.addEventListener('load', iniciar)
-

@@ -49,11 +49,6 @@ app.post("/card", (req, res, next) =>{
     controller.createCard(req, res, next);
     console.log ("si llegué a app post")
 
-  
-   controller.createCard(req, res, next);
-   
-   console.log('entrando al post')
-
 });
 
 app.listen(port, () =>{
