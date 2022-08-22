@@ -1,28 +1,34 @@
 html * {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-  }
-body {
-    min-height: 100vh;
-    font-family: Verdana, sans-serif;
-    display: flex; /* ver nota al final de este taller */
-    flex-direction: column;
-  }
-header {
-    margin-bottom: 0.5em;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
+
+body {
+  min-height: 100vh;
+  font-family: Verdana, sans-serif;
+  display: flex;
+  /* ver nota al final de este taller */
+  flex-direction: column;
+}
+
+header {
+  margin-bottom: 0.5em;
+}
+
 nav {
   font-size: 18px;
   border: 1px solid rgba(0, 0, 0, 0.2);
   padding-bottom: 10px;
   background: linear-gradient(260deg, #03045E 0%, #00B4D8 100%);
 }
+
 #logo {
-    margin: 14px 0 0 20px;  
-    font-size: 22px;
-    display: inline-block;
-  }
+  margin: 14px 0 0 20px;
+  font-size: 22px;
+  display: inline-block;
+}
+
 #navbar-toggle {
   position: absolute;
   top: 18px;
@@ -30,20 +36,25 @@ nav {
   cursor: pointer;
   color: rgba(255, 255, 255, 0.8);
   font-size: 24px;
-}  
-.main-nav > li {
-    text-align: center;
-    margin: 15px auto;
-  }
-.main-nav > li > a, #logo {
+}
+
+.main-nav>li {
+  text-align: center;
+  margin: 15px auto;
+}
+
+.main-nav>li>a,
+#logo {
   text-decoration: none;
   color: rgba(255, 255, 255, 0.7);
   transition: 0.5s;
-} 
+}
+
 .main-nav {
-    list-style-type: none;
-    display: none;
-  } 
+  list-style-type: none;
+  display: none;
+}
+
 .active {
   display: block;
 }
@@ -91,15 +102,15 @@ footer section a svg {
   margin: 0 1%;
 }
 
-#article section:nth-child(2n+1){
+#article section:nth-child(2n+1) {
   background-color: #00B4D8;
 }
 
-#article section:nth-child(2n){
+#article section:nth-child(2n) {
   background-color: #90E0EF;
 }
 
-#clear-main{
+#clear-main {
   display: inline-block;
   line-height: 1.5;
   text-align: center;
@@ -118,18 +129,81 @@ footer section a svg {
   background-color: #2376ae;
 }
 
+/* styling navlist */
+#navlist {
+  display: flex;
+  background-color: #0074D9;
+  justify-content: left;
+  width: 100%;
+}
+
+/* styling navlist anchor element */
+#navlist a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 15px;
+}
+
+.navlist-right {
+  float: right;
+}
+
+/* hover effect of navlist anchor element */
+#navlist a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* styling search bar */
+.search input[type=text] {
+  width: 300px;
+  height: 25px;
+  border-radius: 25px;
+  border: none;
+}
+
+.search {
+  display: flex;
+  margin-top: 10px;
+  flex-direction: column;
+  margin-left: 220px;
+  cursor: pointer;
+}
+
+
+
+#buscar {
+  display: flex;
+  background-color: #d95700;
+  color: #f2f2f2;
+  padding: 5px 10px;
+  margin-left: 10px;
+  margin-right: 16px;
+  font-size: 13px;
+  margin-top: 5px;
+  border: none;
+}
+
+#buscar :hover ::before{
+  background: #03045E;
+}
+
 @media screen and (min-width: 768px) {
-  
+
   /* bloque de reglas CSS para anchos a partir de 768 pixeles */
-  
-  body{
-    background-color:#90E0EF;
+
+  body {
+    background-color: #90E0EF;
   }
 
   #navbar-toggle {
     display: none;
   }
-  
+
   nav {
     display: flex;
     justify-content: space-between;
@@ -145,35 +219,37 @@ footer section a svg {
     margin-right: 15px;
   }
 
-  .main-nav > li > a {
+  .main-nav>li>a {
     margin-left: 40px;
   }
 
   #logo:hover,
-  .main-nav > li > a:hover {
-     color: rgba(255, 255, 255, 1);
+  .main-nav>li>a:hover {
+    color: rgba(255, 255, 255, 1);
   }
 
   #logo {
     margin-top: 4px;
   }
+}
+
+@media screen and (min-width: 992px) {
+  body {
+    margin: 0 5% 0 5%;
+    background-color: #CAF0F8
   }
-  @media screen and (min-width: 992px){
-    body {
-      margin: 0 5% 0 5%;
-      background-color: #CAF0F8
-    }
+}
+
+@media screen and (min-width: 1200px) {
+  body {
+    margin: 0 10% 0 10%;
+    background-color: #3EDBF0
   }
-  @media screen and (min-width: 1200px) {
-    body {
-      margin: 0 10% 0 10%;
-      background-color: #3EDBF0
-    }
+}
+
+@media screen and (min-width: 1400px) {
+  body {
+    margin: 0 10% 0 10%;
+    background-color: #CAF0F8
   }
-  @media screen and (min-width: 1400px) {
-    body {
-      margin: 0 10% 0 10%;
-      background-color: #CAF0F8
-    }
-  }
-  
+}

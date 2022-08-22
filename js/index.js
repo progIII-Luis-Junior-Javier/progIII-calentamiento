@@ -1,5 +1,5 @@
 
-function iniciar(){
+function iniciar() {
     const mainNav = document.querySelector('.main-nav')
     const navBarToggle = document.querySelector('#navbar-toggle')
 
@@ -47,8 +47,14 @@ async function loadPage(event) {
             html = await response.text()
             container.innerHTML = html
 
-            document.querySelector("#boton-buscarNumber").addEventListener('click', enviarBusquedaNumber)
-
+            document.querySelector("#buscar").addEventListener('click', enviarBusquedaNumber)
+            const options = document.querySelectorAll('.navlist a')
+            options.forEach(option1 => option.addEventListener('click', () => {
+                console.log(option1)
+                if (option1 === 'Home') {
+                    option = 'Inicio'
+                }
+            }))
             break;
         default:
             if (option !== 'Inicio') {
@@ -56,7 +62,7 @@ async function loadPage(event) {
                     `No hay definido un caso para la opción '${option}'`
                 );
             } else {
-                url = './html/register.html'
+                url = './index.html'
                 response = await fetch(url)
                 html = await response.text()
                 container.innerHTML = html
@@ -103,8 +109,8 @@ function enviarDatos() {
     }
 
 
-   enviar(carta)
-   
+    enviar(carta)
+
 }
 
 
@@ -131,23 +137,18 @@ function enviar(carta) {
 
 //------------------------JAVIER
 
-function enviarBusquedaNumber(){
-    const numero = document.querySelector('#cardNumber').value    
+function enviarBusquedaNumber() {
+    const numero = document.querySelector('#buscador').value
     buscarNumber(numero)
-    
+
 }
 
-function buscarNumber(numeroCarta){
-    const url= `http://localhost:3000/card/bycardNumber/:${numeroCarta}`
-    fetch(url, {
-        method:"get",
-        headers: {
-            'Content-Type': 'application/json'
-        },url: JSON.stringify(numeroCarta)
-    }).then(function (res) {
-        if (res.ok){
-            res.json().then(function ({ data }) {
-                console.log(data)
+function buscarNumber(numeroCarta) {
+    const url = `http://localhost:3000/card/bycardNumber/${numeroCarta}`
+    fetch(url).then(function (res) {
+        if (res.ok) {
+            res.json().then(function ({ info }) {
+                console.log(info)
             })
         }
     })
