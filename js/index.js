@@ -37,9 +37,7 @@ async function loadPage(event) {
             response = await fetch(url)
             html = await response.text()
             container.innerHTML = html
-
             document.querySelector('#boton-enviar').addEventListener('click', enviarDatos)
-            console.log(numero)
             break;
         case 'Listado':
             url = './html/list.html'
@@ -48,13 +46,7 @@ async function loadPage(event) {
             container.innerHTML = html
 
             document.querySelector("#buscar").addEventListener('click', enviarBusquedaNumber)
-            const options = document.querySelectorAll('.navlist a')
-            options.forEach(option1 => option.addEventListener('click', () => {
-                console.log(option1)
-                if (option1 === 'Home') {
-                    option = 'Inicio'
-                }
-            }))
+           
             break;
         default:
             if (option !== 'Inicio') {
