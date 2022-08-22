@@ -1,4 +1,5 @@
-document.addEventListener('DOMContentLoaded', async () => {
+
+function iniciar(){
     const mainNav = document.querySelector('.main-nav')
     const navBarToggle = document.querySelector('#navbar-toggle')
 
@@ -15,7 +16,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     sections.forEach(section => section.addEventListener('click', manageOptions))
 
     options.forEach(pag => pag.addEventListener('click', loadPage))
-})
+}
 
 /**
  * Carga una página en en la SPA según el valor de event.target
@@ -75,6 +76,7 @@ let carta
 let cartaBuscada
 
 function enviarDatos() {
+<<<<<<< HEAD
    const nombre = document.querySelector('#cardName').value
    const numero = document.querySelector('#cardNumber').value
    const tipoCarta = document.querySelector('#typeCard').value
@@ -97,11 +99,36 @@ function enviarDatos() {
        stagelevel: stageLevel,
        rarity: rareza
    }
+=======
+    const nombre = document.querySelector('#cardName').value
+    const numero = document.querySelector('#cardNumber').value
+    const tipoCarta = document.querySelector('#typeCard').value
+    const costoJuego = document.querySelector('#playCost').value
+    const color = document.querySelector('#colorCard').value
+    const nivel = document.querySelector('#levelCard').value
+    const poder = document.querySelector('#power').value
+    const atributo = document.querySelector('#attribute').value
+    const stageLevel = document.querySelector('#stageLevel').value
+    const rareza = document.querySelector('#rarity').value
+    carta = {
+        cardName: nombre,
+        cardNumber: numero,
+        typeCard: tipoCarta,
+        playCost: costoJuego,
+        colorCard: color,
+        levelCard: nivel,
+        power: poder,
+        attribute: atributo,
+        stageLevel: stageLevel,
+        rarity: rareza
+    }
+>>>>>>> 86710733a027585ce994f893aede3036234704cd
 
    enviar(carta)
    
 }
 
+<<<<<<< HEAD
 function buscarCarta(numero, lista) {
    const cartaIndex = lista.findIndex((carta) => numero === carta.cardNumber)
 
@@ -126,15 +153,14 @@ function buscarCarta(numero, lista) {
 */
 
 
+
 function enviar(carta) {
     fetch(`http://localhost:3000/card`, {
         method: 'post',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({
-            carta
-        })
+        body: JSON.stringify(carta)
     }).then(function (res) {
         if (res.ok) {
             res.json()
@@ -145,19 +171,8 @@ function enviar(carta) {
     })
 }
 
-/*
 
-fetchData = async url => {
-    const response = await fetch(url)
-    if (!response.ok) {
-        throw new Error(
-            `${response.status} - ${response.statusText}, 
-             al intentar acceder al recurso '${response.url}'`
-        )
-    }
-    return await response.json()
-}
-*/
+
 
 //------------------------JAVIER
 
@@ -242,3 +257,6 @@ function enviarDatos2() {
 }
     
     
+
+window.addEventListener('load', iniciar)
+
