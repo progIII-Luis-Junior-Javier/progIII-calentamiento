@@ -1,5 +1,5 @@
 
-function iniciar(){
+function iniciar() {
     const mainNav = document.querySelector('.main-nav')
     const navBarToggle = document.querySelector('#navbar-toggle')
 
@@ -39,13 +39,22 @@ async function loadPage(event) {
             container.innerHTML = html
 
             document.querySelector('#boton-enviar').addEventListener('click', enviarDatos)
-
+            console.log(numero)
             break;
         case 'Listado':
             url = './html/list.html'
             response = await fetch(url)
             html = await response.text()
             container.innerHTML = html
+
+            document.querySelector("#buscar").addEventListener('click', enviarBusquedaNumber)
+            const options = document.querySelectorAll('.navlist a')
+            options.forEach(option1 => option.addEventListener('click', () => {
+                console.log(option1)
+                if (option1 === 'Home') {
+                    option = 'Inicio'
+                }
+            }))
             break;
         default:
             if (option !== 'Inicio') {
@@ -53,7 +62,7 @@ async function loadPage(event) {
                     `No hay definido un caso para la opción '${option}'`
                 );
             } else {
-                url = './html/register.html'
+                url = './index.html'
                 response = await fetch(url)
                 html = await response.text()
                 container.innerHTML = html
@@ -70,10 +79,12 @@ function manageOptions(event) {
 }
 
 
+
 let carta
-let cartaBuscada
+
 
 function enviarDatos() {
+
     const nombre = document.querySelector('#cardName').value
     const numero = document.querySelector('#cardNumber').value
     const tipoCarta = document.querySelector('#typeCard').value
@@ -97,8 +108,12 @@ function enviarDatos() {
         rarity: rareza
     }
 
+
     enviar(carta)
+
 }
+
+
 
 function enviar(carta) {
     fetch(`http://localhost:3000/card`, {
@@ -108,12 +123,34 @@ function enviar(carta) {
         },
         body: JSON.stringify(carta)
     }).then(function (res) {
-            if (res.ok) {
-                res.json()
-                    .then(function ({ data }) {
-                        console.log(data)
+        if (res.ok) {
+            res.json()
+                .then(function ({ data }) {
+                    console.log(data)
+                })
+        }
+    })
+}
+
+
+
+
+//------------------------JAVIER
+
+function enviarBusquedaNumber() {
+    const numero = document.querySelector('#buscador').value
+    buscarNumber(numero)
+
+}
+
+function buscarNumber(numeroCarta) {
+    const url = `http://localhost:3000/card/bycardNumber/${numeroCarta}`
+    fetch(url).then(function (res) {
+        if (res.ok) {
+            res.json().then(function ({ info }) {
+                console.log(info)
             })
-            }               
+        }
     })
 }
 

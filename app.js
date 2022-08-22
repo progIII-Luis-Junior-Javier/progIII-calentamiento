@@ -43,7 +43,7 @@ app.get("/card/bytypeCard/:typeCard", (req, res, next) =>{
 
 
 app.post("/card", (req, res, next) =>{
-   // res.setHeader('Access-Control-Allow-Origin', '*')
+   // res.setHeader('Access-Control-Allow-Origin', 
    controller.createCard(req, res, next);
    console.log('entrando al post')
 });

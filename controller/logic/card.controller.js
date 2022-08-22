@@ -4,7 +4,11 @@ const cardDto = require("../../nodejs/model/dto/card.dto");
 
 
 exports.createCard = (req, res, next) => {
+
+    console.log("si llegue a createCard")
+
     
+
     let card = {
         cardNumber: req.body.cardNumber,
         typeCard: req.body.typeCard,
