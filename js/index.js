@@ -138,13 +138,8 @@ function enviarBusquedaNumber(){
 }
 
 function buscarNumber(numeroCarta){
-    const url= `http://localhost:3000/card/bycardNumber/:${numeroCarta}`
-    fetch(url, {
-        method:"get",
-        headers: {
-            'Content-Type': 'application/json'
-        },url: JSON.stringify(numeroCarta)
-    }).then(function (res) {
+    const url= `http://localhost:3000/card/bycardNumber/${numeroCarta}`
+    fetch(url).then(function (res) {
         if (res.ok){
             res.json().then(function ({ data }) {
                 console.log(data)
